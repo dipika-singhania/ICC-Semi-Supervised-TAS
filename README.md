@@ -32,17 +32,17 @@ Change the dataset_name,  to run on a different dataset.
 
 #### Evaluate Unsupervised Contrastive Representation Learning
     ##### python runcodes/unsupervised_traineval.py --base_dir mstcn_data/<dataset_name>/ --output_dir <output_directory_to_dump_modelcheckpoint_logs> --eval
-    **Example:**
+    Example:
     python runcodes/unsupervised_traineval.py --output_dir mstcn_data/50salads/results/ICC_SS_TAS/ --base_dir mstcn_data/50salads/ --eval
 
 #### Train ICC for 4 iterations for particular split
     ##### python runcodes/iterative_semi_supervised.py --split_number <split_number> --semi_per <semi_supervised_percentage> --base_dir mstcn_data/<datasetname>/ --output_dir <output_directory_to_dump_model_checkpoints_logs> --model_wt <unsupervised_representation_modelwt> --cuda <gpu_number>
-    **Example:**
+    Example:
     python runcodes/iterative_semi_supervised.py --split_number 1 --semi_per 0.05 --output_dir mstcn_data/50salads/results/ICC_SS_TAS/ --base_dir mstcn_data/50salads/ --model_wt mstcn_data/50salads/results/ICC_SS_TAS/unsupervised_C2FTCN_splitfull/best_50salads_c2f_tcn.wt --cuda 3
 
 #### Evaluate 4th iteration results of ICC algorithm for all splits
     ###### python runcodes/iterative_semi_supervised_eval.py --semi_per <semi_supervised_percentage> --base_dir mstcn_data/<datasetname>/ --output_dir <dir_to_dump_checkpoints_logs>  --iter_num <iteration_number_of_ICC> --cuda <cuda_device_number>
-    **Example:**
+    Example:
     python runcodes/iterative_semi_supervised_eval.py --semi_per 0.1 --output_dir mstcn_data/50salads/results/ICC_SS_TAS/ --base_dir mstcn_data/50salads/ --iter_num 4 --cuda 3
 
 
