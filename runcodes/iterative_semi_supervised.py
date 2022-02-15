@@ -86,7 +86,7 @@ def set_seed():
 
 def get_out_dir(args, iter_num):
 
-    args.output_dir = args.output_dir + "/semi_iter{}_split{}_per{}".format(iter_num, args.split_number, args.semi_per)
+    args.output_dir = args.output_dir + "/icc{}_semi{}_split{}".format(iter_num, args.semi_per, args.split_number)
 
     if args.wd is not None:
         args.output_dir = args.output_dir + "_wd{:.5f}".format(args.wd)

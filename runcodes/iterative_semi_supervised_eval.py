@@ -208,7 +208,7 @@ for split in all_splits:
     origargs = copy.deepcopy(args)
     if not args.model_wt:
         if args.iter_num:
-            args.output_dir = args.output_dir + "/semi_iter{}semi_split{}_per{}".format(args.iter_num, split, args.semi_per)
+            args.output_dir = args.output_dir + "/icc{}_semi{}_split{}".format(args.iter_num, args.semi_per, split)
 
         if args.wd is not None:
             args.output_dir = args.output_dir + "_wd{:.5f}".format(args.wd)

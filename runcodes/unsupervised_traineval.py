@@ -139,10 +139,10 @@ if args.dataset_name == "50salads":
     if args.weights is None:
         args.weights = [1, 1, 1, 1, 1, 1]
     if args.delta is None:
-        args.delta = 0.05
+        args.delta = 0.5
     args.high_level_act_loss = False
     if args.num_samples_frames is None:
-        args.num_samples_frames = 70
+        args.num_samples_frames = 80
 elif args.dataset_name == "breakfast":
     if args.epsilon is None:
         args.epsilon = 0.03
