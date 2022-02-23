@@ -4,7 +4,7 @@
 ### Data download and directory structure:
 
 The I3D features, ground-truth and test split files are similar used to [MSTCN++](https://github.com/yabufarha/ms-tcn). 
-In the mstcn_data, download additional files, checkpoints and semi-supervised splits can be downloaded from [drive](https://drive.google.com/drive/folders/1ArYPctLZZKfjicEf5nl4LJrY9xxFc6wU?usp=sharing) . 
+In the mstcn_data, download additional files, checkpoints and semi-supervised splits can be downloaded from [drive](https://drive.google.com/drive/folders/1ArYPctLZZKfjicEf5nl4LJrY9xxFc6wU?usp=sharing) . It also contains the checkpoints files for unsupervised pretraining, semi-supervised checkpoints.
 Specifically, this drive link contains all necessary data in required directory structure except breakfast I3D feature files which can be downloaded from MSTCN++ data directory.
 
 The data directory is arranged in following structure
@@ -14,7 +14,7 @@ The data directory is arranged in following structure
    - dataset_name
    - groundTruth
    - splits
-   - semi_supervised
+   - semi_supervised (It contains semi-supervised, 5%, 10% or 40% selection of samples.)
    - results
         - ICC_SS_TAS
             - unsupervised_checkpoint_files
