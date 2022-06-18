@@ -121,6 +121,7 @@ if args.clustCount is not None:
     args.output_dir = args.output_dir + "_clusC{}".format(args.clustCount)
 
 if args.dataset_name == "50salads":
+    args.epsilon_l = 0.002
     if args.epsilon is None:
         args.epsilon = 0.05
     if args.clustCount is None:
@@ -144,6 +145,7 @@ if args.dataset_name == "50salads":
     if args.num_samples_frames is None:
         args.num_samples_frames = 80
 elif args.dataset_name == "breakfast":
+    args.epsilon_l = 0.005
     if args.epsilon is None:
         args.epsilon = 0.03
     if args.clustCount is None:
@@ -171,6 +173,7 @@ elif args.dataset_name == "breakfast":
     if args.num_samples_frames is None:
         args.num_samples_frames = 20
 elif args.dataset_name == "gtea":
+    args.epsilon_l = 0.005
     if args.epsilon is None:
         args.epsilon = 0.02
     if args.clustCount is None:
@@ -315,7 +318,8 @@ class CriterionClass(nn.Module):
             idx = torch.clamp(idx, 0, vidlen - 1)
 
             # Sampling of second set of frames from surroundings epsilon
-            vlow = 1   # To prevent value 0 in variable low
+            # vlow = 1   # To prevent value 0 in variable low
+            vlow = int(np.ceil(args.epsilon_l * vidlen.item()))
             vhigh = int(np.ceil(args.epsilon * vidlen.item()))
 
             if vhigh <= vlow:
@@ -461,7 +465,7 @@ def make_loader(args, dataset, batch_size, train=True):
     loader = torch.utils.data.DataLoader(dataset=dataset,
                                          batch_size=batch_size, 
                                          shuffle=train,
-                                         pin_memory=True, num_workers=7, collate_fn=collate_fn_override,
+                                         pin_memory=False, num_workers=0, collate_fn=collate_fn_override,
                                          worker_init_fn=_init_fn)
     return loader
 

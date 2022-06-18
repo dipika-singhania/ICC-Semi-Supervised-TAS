@@ -151,10 +151,11 @@ def get_out_dir(args, iter_num):
         args.back_gd = ['action_start', 'action_end']
         if args.weights is None:
             args.weights = [1., 1., 1., 1., 1., 1.]
+        args.epsilon_l = 0.002
         if args.epsilon is None:
             args.epsilon = 0.05
         if args.delta is None:
-            args.delta = 0.05
+            args.delta = 0.5
         args.high_level_act_loss = False
         if args.num_samples_frames is None:
             args.num_samples_frames = 70
@@ -195,6 +196,7 @@ def get_out_dir(args, iter_num):
         args.back_gd = ['SIL']
         if args.weights is None:
             args.weights = [1., 1., 1., 1., 1., 1.]
+        args.epsilon_l = 0.005
         if args.epsilon is None:
             args.epsilon = 0.03
         if args.delta is None:
@@ -229,6 +231,7 @@ def get_out_dir(args, iter_num):
         args.back_gd = ['background']
         if args.weights is None:
             args.weights = [1., 1., 1., 1., 1., 1.]
+        args.epsilon_l = 0.005
         if args.epsilon is None:
             args.epsilon = 0.02
         if args.delta is None:
@@ -253,9 +256,9 @@ def get_out_dir(args, iter_num):
         args.train_split_file = args.base_dir + "/splits/train.split{}.bundle".format(args.split_number)
     else:
         args.train_split_file = args.base_dir + "/semi_supervised/train.split{}_amt{}.bundle".format(args.split_number, args.semi_per)
-    print("train split file name = ", args.train_split_file)
         args.unsupervised_train_split_file = args.base_dir + "/splits/train.split{}.bundle".format(args.train_split)
 
+    print("train split file name = ", args.train_split_file)
     args.test_split_file = args.base_dir + "/splits/test.split{}.bundle".format(args.split_number)
     if args.features_file_name is None:
         args.features_file_name = args.base_dir + "/features/"
@@ -520,7 +523,8 @@ class CriterionClass(nn.Module):
 
 
             # Sampling of second set of frames from surroundings epsilon
-            vlow = 1   # To prevent value 0 in variable low
+            # vlow = 1   # To prevent value 0 in variable low
+            vlow = int(np.ceil(self.args.epsilon_l * vidlen.item()))
             vhigh = int(np.ceil(self.args.epsilon * vidlen.item()))
 
             if vhigh <= vlow:
@@ -669,7 +673,7 @@ def make_loader(dataset, batch_size, train=True):
     loader = torch.utils.data.DataLoader(dataset=dataset,
                                          batch_size=batch_size, 
                                          shuffle=train,
-                                         pin_memory=True, num_workers=7, collate_fn=collate_fn_override,
+                                         pin_memory=False, num_workers=0, collate_fn=collate_fn_override,
                                          worker_init_fn=_init_fn)
     return loader
 
