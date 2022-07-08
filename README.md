@@ -40,11 +40,23 @@ Change the dataset_name,  to run on a different dataset.
     Example:
     python runcodes/iterative_semi_supervised.py --split_number 1 --semi_per 0.05 --output_dir mstcn_data/50salads/results/ICC_SS_TAS/ --base_dir mstcn_data/50salads/ --model_wt mstcn_data/50salads/results/ICC_SS_TAS/unsupervised_C2FTCN_splitfull/best_50salads_c2f_tcn.wt --cuda 3
 
-#### Evaluate 4th iteration results of ICC algorithm for all splits
-    ###### python runcodes/iterative_semi_supervised_eval.py --semi_per <semi_supervised_percentage> --base_dir mstcn_data/<datasetname>/ --output_dir <dir_to_dump_checkpoints_logs>  --iter_num <iteration_number_of_ICC> --cuda <cuda_device_number>
+#### Evaluate results of ICC algorithm for all splits
+    ###### python runcodes/iterative_semi_supervised_eval.py --semi_per <semi_supervised_percentage> --base_dir mstcn_data/<datasetname>/ --output_dir <dir_to_dump_checkpoints_logs> --cuda <cuda_device_number>
     Example:
-    python runcodes/iterative_semi_supervised_eval.py --semi_per 0.1 --output_dir mstcn_data/50salads/results/ICC_SS_TAS/ --base_dir mstcn_data/50salads/ --iter_num 4 --cuda 3
+    python runcodes/iterative_semi_supervised_eval.py --semi_per 0.1 --output_dir mstcn_data/50salads/results/ICC_SS_TAS/ --base_dir mstcn_data/50salads/ --cuda 3
 
+We have also provided semi-supervised selection of training data and for 50saladsa and GTEA all unsupervised and semi-supervised all iterations and splits checkpoints for 5% and 10% data of [drive](https://drive.google.com/drive/folders/1ArYPctLZZKfjicEf5nl4LJrY9xxFc6wU?usp=sharing). These checkpoints correspond to 1 single selection of semi-supervised training set of 5%, 10%. However, results reported in the paper is mean of 5 different selections of semi-supervised training set. So these checkpints result though closely match with reported results, will not match in exact number. For most scores it will give higher or equivalent results.
+
+#### Command to evaluate the final checkpints of 50salads provided checkpoints inside ICC_SS_TAS folder in mstcn_data
+
+    python runcodes/iterative_semi_supervised_eval.py --semi_per 0.05 --output_dir mstcn_data/50salads/results/ICC_SS_TAS/ --base_dir mstcn_data/50salads/ --cuda 6
+    python runcodes/iterative_semi_supervised_eval.py --semi_per 0.1 --output_dir mstcn_data/50salads/results/ICC_SS_TAS/ --base_dir mstcn_data/50salads/ --cuda 6
+    
+    
+#### Command to evaluate the final checkpints of GTEA provided checkpoints inside ICC_SS_TAS folder in mstcn_data
+
+    python runcodes/iterative_semi_supervised_eval.py --semi_per 0.05 --output_dir mstcn_data/gtea/results/ICC_SS_TAS/ --base_dir mstcn_data/gtea/ --cuda 6
+    python runcodes/iterative_semi_supervised_eval.py --semi_per 0.1 --output_dir mstcn_data/gtea/results/ICC_SS_TAS/ --base_dir mstcn_data/gtea/ --cuda 6
 
 ### Citation:
 
@@ -54,6 +66,12 @@ If you use the code, please cite
     Coarse to fine multi-resolution temporal convolutional network.
     arXiv preprint 
 
-    D Singhania, R Rahaman, A Yao
-    Iterative Frame-Level Representation Learning And Classification For Semi-Supervised Temporal Action Segmentation
-    arXiv preprint 
+    @inproceedings{singhania2022iterative,
+     title={Iterative Contrast-Classify For Semi-supervised Temporal Action Segmentation},
+     author={Singhania, Dipika and Rahaman, Rahul and Yao, Angela},
+     booktitle={Proceedings of the AAAI Conference on Artificial Intelligence},
+     volume={36},
+     number={2},
+     pages={2262--2270},
+     year={2022}
+   }
