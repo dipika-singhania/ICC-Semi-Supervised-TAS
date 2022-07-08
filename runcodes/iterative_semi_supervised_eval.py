@@ -92,7 +92,12 @@ if args.model_wt:
         args.output_dir = os.path.dirname(args.model_wt)
 else:
     if not args.iter_num:
-        args.iter_num = 4
+        if args.dataset_name == "breakfast":
+            args.iter_num = 4
+        elif args.dataset_name == "50salads":
+            args.iter_num = 5
+        elif args.dataset_name == "gtea":
+            args.iter_num = 3
     if not args.semi_per:
         print("Input --semi_per to specify of which semi supervised percentage model need to be picked up")
         sys.exit(1)

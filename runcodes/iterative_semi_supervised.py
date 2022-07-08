@@ -240,10 +240,10 @@ def get_out_dir(args, iter_num):
         if args.num_samples_frames is None:
             args.num_samples_frames = 20
 
-    step_p_str = "_".join(map(str, args.steps_proj))
-    step_m_str = "_".join(map(str, args.steps_main))
-    optim_sche_format = f"lrp_{args.lr_proj}_lrm_{args.lr_main}_gp_{args.gamma_proj}_gm_{args.gamma_main}_sp_{step_p_str}_sm_{step_m_str}"
-    args.output_dir = args.output_dir + optim_sche_format
+    # step_p_str = "_".join(map(str, args.steps_proj))
+    # step_m_str = "_".join(map(str, args.steps_main))
+    # optim_sche_format = f"lrp_{args.lr_proj}_lrm_{args.lr_main}_gp_{args.gamma_proj}_gm_{args.gamma_main}_sp_{step_p_str}_sm_{step_m_str}"
+    # args.output_dir = args.output_dir + optim_sche_format
 
     args.output_dir = args.output_dir + "/"
     print("printing in output dir = ", args.output_dir)
@@ -364,10 +364,9 @@ def get_unlabbeled_data_and_dump_pseudo_labels(args, model, device):
 
 def model_pipeline():
     origargs = my_parser.parse_args()
-    if origargs.iter_num is None:
-        origargs.iter_num = [1, 2, 3, 4]
-    else:
-        origargs.iter_num = origargs.iter_num
+    backup_iter = None
+    if origargs.iter_num:
+        backup_iter = origargs.iter_num
 
     if origargs.dataset_name is None:
         origargs.dataset_name = origargs.base_dir.split("/")[-2]
@@ -379,10 +378,17 @@ def model_pipeline():
 
     if origargs.dataset_name == "breakfast":
         origargs.num_class = 48
+        origargs.iter_num = [1, 2, 3, 4]
     elif origargs.dataset_name == "50salads":
         origargs.num_class = 19
+        origargs.iter_num = [1, 2, 3, 4, 5]
     elif origargs.dataset_name == "gtea":
         origargs.num_class = 11
+        origargs.iter_num = [1, 2, 3]
+
+
+    if backup_iter:
+        origargs.iter_num = [backup_iter]
 
     # Device argsuration
     if origargs.cudad is not None:
