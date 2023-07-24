@@ -74,10 +74,9 @@ If you use the code, please cite
      volume={36},
      number={2},
      pages={2262--2270},
-     year={2022}
-   }
+     year={2022}}
 
-   @ARTICLE{10147035,
+    @ARTICLE{10147035,
      author={Singhania, Dipika and Rahaman, Rahul and Yao, Angela},
      journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
      title={C2F-TCN: A Framework for Semi- and Fully-Supervised Temporal Action Segmentation}, 
