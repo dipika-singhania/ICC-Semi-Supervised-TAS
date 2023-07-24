@@ -1,5 +1,6 @@
 # ICC-Semi-Supervised-TAS
 [Iterative Contrast-Classify For Semi-supervised Temporal Action Segmentation](https://arxiv.org/abs/2112.01402) accepted to be presented in AAAI-2022.
+Code for semi supervsion version of ‘C2F-TCN: A Framework for Semi- and Fully-Supervised Temporal Action Segmentation’ [link](https://ieeexplore.ieee.org/abstract/document/10147035) published in TPAMI-2023.
 
 ### Data download and directory structure:
 
@@ -75,3 +76,11 @@ If you use the code, please cite
      pages={2262--2270},
      year={2022}
    }
+
+   @ARTICLE{10147035,
+     author={Singhania, Dipika and Rahaman, Rahul and Yao, Angela},
+     journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
+     title={C2F-TCN: A Framework for Semi- and Fully-Supervised Temporal Action Segmentation}, 
+     year={2023},
+     pages={1-18},
+     doi={10.1109/TPAMI.2023.3284080}}
